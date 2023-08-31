@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
+    <title>Jogar Dados</title>
+</head>
+<body>
+    <div style="margin-top: 10%" class="container">
+        <h1 class="text-center">Simulador de Dados</h1>
+       
+            <div class="input-group mb-3">
+                <input type="text" name="dados" id="dados" class="form-control"  placeholder="Quantidade de Dados" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <span class="input-group-text" id="sp_qtdDados">Dados</span>
+            </div>
+    
+            <div class="input-group mb-3">
+                <input type="number" name="faces" id="faces" class="form-control" placeholder="Quantidade de Faces" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <span class="input-group-text" id="sp_qtdFaces">Faces</span>
+            </div>
+            <div class=" text-center">
+                <input value="Jogar" type="submit" class="btn btn-primary" onclick="jogar()">
+            </div>
+      
+    
+        <!-- tabelas-->
+    <div class="row mt-5" hidden="true">
+        <div class="col-sm-6 text-center">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Dados</th>
+                    <th scope="col">Resultado</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6 text-center">
+
+            <h2>Soma dos Dados</h2>
+            <h1 id="soma">...soma</h1>
+            <h2>Maior Resultado</h2>
+            <h1 id="maior">...maior</h1>
+        </div>
+
+        <script type="text/javascript">
+
+            function jogar(){
+               let dados = $("#dados").val();
+               let faces = $("#faces").val();
+               let maior = 0;
+               let soma = 0;
+               let resultado;
+               
+               $("tbody").text("")
+
+                for (let i= 1; i <= dados; i++) {
+                    resultado = Math.floor(Math.random() * faces + 1)
+                    soma += resultado;
+
+                    if (maior < resultado) {
+                        maior = resultado;
+                    }
+                    $("tbody").append("<tr><td>" +i+"</td><td>" +resultado +"</td></tr>");
+                }
+                $("#soma").text(soma);
+                $("#maior").text(maior);
+                $(".row").attr("hidden", false);
+            }
+           
+                 
+
+        </script>
+</body>
+</html>
